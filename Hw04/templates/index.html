@@ -62,7 +62,7 @@
                     data: {name_give: name, count_give: count, address_give: address, phone_give: phone},
                     success: function (response) { // 성공하면
                         if (response["result"] == "success") {
-                            alert(response["주문이 완료되었습니다."]);
+                            alert("주문이 완료되었습니다.");
                         }
                     }
                 })
@@ -81,10 +81,10 @@
                     data: {},
                     success: function (response) {
                         if (response["result"] == "success") {
-                            let orders = response['articles'];
+                            let orders = response['orders'];
 
                             for (let i = 0; i < orders.length; i++) {
-                                makeCard(orders[i]['name'], orders[i]['count'], orders[i]['address'], orders[i]['phone'])
+                                makeOrderRow(orders[i]['name'], orders[i]['count'], orders[i]['address'], orders[i]['phone'])
 
                             }
                         }
@@ -162,6 +162,8 @@
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
                 <div class="input-group mb-3">

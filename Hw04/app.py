@@ -24,24 +24,26 @@ def save_order():
     address_receive = request.form['address_give']
     phone_receive = request.form['phone_give']
 
-    list ={
+    order = {
       'name': name_receive,
       'count': count_receive,
       'address': address_receive,
-      'phone': phone_receive
-}
+      'phone': phone_receive}
 
-db.homework.insert_one(list)
+    db.orders.insert_one(order)
 
-return jsonify({'result': 'success'})
+    return jsonify({'result': 'success'})
 
 
 # 주문 목록보기(Read) API
 @app.route('/order', methods=['GET'])
 def view_orders():
     # 여길 채워나가세요!
-    orders = list(db.homework.find({},{'_id':False}))
-    return jsonify({'result': 'success', 'orders': orders})
+    all_orders = list(db.orders.find({},{'_id':False}))
+    for order in all_orders:
+        print(order)
+
+    return jsonify({'result': 'success', 'orders': all_orders})
 
 
 if __name__ == '__main__':
